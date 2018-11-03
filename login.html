@@ -8,8 +8,14 @@
 </head>
 <body style="background-color: black;">
 <p style="display: inline; border: 0; background-color: black; color: white; font-size: 24px; font-family: 'VT323', monospace; word-break: break-word; white-space: pre; width:100%" id="p"></p>
-<textarea rows="12" style="display: inline; border: 0; background-color: black; color: white; font-size: 24px; font-family: 'VT323', monospace; word-break: break-word; white-space: pre; width:100%"></textarea>
+<textarea id="input" rows="12" style="display: inline; border: 0; background-color: black; color: white; font-size: 24px; font-family: 'VT323', monospace; word-break: break-word; white-space: pre; width:100%"></textarea>
 <script>
+    document.getElementById("input").addEventListener("keyup", function(event) {
+		event.preventDefault();
+			if (event.keyCode === 13) {
+				getInput();
+			}
+	});
     var p = document.getElementById("p");
     var loginInit = "Loading... \nEnter Your Username: ";
     a(document.getElementById("p"), loginInit, 0);
@@ -17,6 +23,9 @@
         if(x<w.length) {
 	        setTimeout(function() {t.innerHTML+=w.charAt(x);a(t,w,x+1);},100);
         }
+    }
+    function getInput() {
+        document.getElementById("p").innerHTML += document.getElementById("input").value;
     }
 </script>
 </body>

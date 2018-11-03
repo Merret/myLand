@@ -15,7 +15,7 @@
     document.getElementById("input").addEventListener("keyup", function(event) {
 		event.preventDefault();
 			if (event.keyCode === 13) {
-				getInput(m);
+				getInput();
 			}
 	});
     var p = document.getElementById("p");
@@ -26,11 +26,14 @@
 	        setTimeout(function() {t.innerHTML+=w.charAt(x);a(t,w,x+1);},100);
         }
     }
-    function getInput(id) {
+    function getInput() {
         document.getElementById("p").innerHTML += document.getElementById("input").value;
-        if(id=="un") {checkUser(document.getElementById("input").value);}
-        if(id=="pw") {checkPw(document.getElementById("input").value);}
+        Parser(m);
         document.getElementById("input").value = "";
+    }
+    function Parser(oo) {
+        if(oo=="un") {checkUser(document.getElementById("input").value);}
+        if(oo=="pw") {checkPw(document.getElementById("input").value);}
     }
     function checkUser(i) {
         x = JSON.parse(xhr.get("https://api.myjson.com/bins/1ggo5k"));

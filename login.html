@@ -6,14 +6,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 <body style="background-color: black;">
-<p style="color: white; font-size: 18px; font-family: 'VT323', monospace;" id="p"></p>
+<p style="color: white; font-size: 18px; font-family: 'VT323', monospace; word-break: break-word;white-space: pre;" id="p"></p>
 <script>
     var p = document.getElementById("p");
-    var loginInit = ["Loading...", "Enter Your Username: "];
-    a(document.getElementById("p"), loginInit[0], 0);
-    endl();
-    a(document.getElementById("p"), loginInit[1], 0);
-    function endl() {p.innerHTML = p.innerHTML+"<br>";}
+    var loginInit = "Loading... \nEnter Your Username: ";
+    a(document.getElementById("p"), loginInit, 0);
     function a(t,w,x) {
         if(x<w.length) {
 	        setTimeout(function() {t.innerHTML+=w.charAt(x);a(t,w,x+1);},100);

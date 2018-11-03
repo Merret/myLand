@@ -10,10 +10,12 @@
 <p style="display: inline; border: 0; background-color: black; color: white; font-size: 24px; font-family: 'VT323', monospace; word-break: break-word; white-space: pre; width:100%" id="p"></p>
 <textarea id="input" rows="12" style="display: inline; border: 0; background-color: black; color: white; font-size: 24px; font-family: 'VT323', monospace; word-break: break-word; white-space: pre; width:100%"></textarea>
 <script>
+    var m = "un";
+    var x;
     document.getElementById("input").addEventListener("keyup", function(event) {
 		event.preventDefault();
 			if (event.keyCode === 13) {
-				getInput();
+				getInput(m);
 			}
 	});
     var p = document.getElementById("p");
@@ -24,9 +26,19 @@
 	        setTimeout(function() {t.innerHTML+=w.charAt(x);a(t,w,x+1);},100);
         }
     }
-    function getInput() {
+    function getInput(id) {
         document.getElementById("p").innerHTML += document.getElementById("input").value;
-	document.getElementById("input").value = "";
+        if(id=="un") {checkUser(document.getElementById("input").value);}
+        if(id=="pw") {checkPw(document.getElementById("input").value);}
+        document.getElementById("input").value = "";
+    }
+    function checkUser(i) {
+        x = JSON.parse(xhr.get("https://api.myjson.com/bins/1ggo5k"));
+        if(x[i]) {a(document.getElementById("p"), "Enter Your Password: ", 0);m="pw";}
+        else {a(document.getElementById("p"), "Account Does Not Exist!\nEnter Your Username Again: ", 0);}
+    }
+    function checkPw(i) {
+        
     }
 </script>
 </body>

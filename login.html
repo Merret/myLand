@@ -11,7 +11,7 @@
 <textarea id="input" rows="12" style="display: inline; border: 0; background-color: black; color: white; font-size: 24px; font-family: 'VT323', monospace; word-break: break-word; white-space: pre; width:100%"></textarea>
 <script>
     var m = "un";
-    var x;
+    var x, g;
     document.getElementById("input").addEventListener("keyup", function(event) {
 		event.preventDefault();
 			if (event.keyCode === 13) {
@@ -34,11 +34,12 @@
     }
     function checkUser(i) {
         x = JSON.parse(xhr.get("https://api.myjson.com/bins/1ggo5k"));
-        if(x[i]) {a(document.getElementById("p"), "Enter Your Password: ", 0);m="pw";}
-        else {a(document.getElementById("p"), "Account Does Not Exist!\nEnter Your Username Again: ", 0);}
+        if(x[i]) {a(document.getElementById("p"), "Enter Your Password: ", 0);m="pw";g=document.getElementById("input").value;}
+        else {document.getElementById("p").innerHTML+="<span style='color: red'>";a(document.getElementById("p"), "Account Does Not Exist!\nEnter Your Username Again: ", 0);document.getElementById("p").innerHTML+="</span";}
     }
     function checkPw(i) {
-        
+        if(x[g]==i) {document.getElementById("p").innerHTML+="<span style='color: green'>";a(document.getElementById("p"), "Login Successfully!", 0);document.getElementById("p").innerHTML+="</span";m="";}
+        else {document.getElementById("p").innerHTML+="<span style='color: red'>";a(document.getElementById("p"), "Wrong Password!\nEnter Your Password Again: ", 0);document.getElementById("p").innerHTML+="</span";}
     }
 </script>
 </body>

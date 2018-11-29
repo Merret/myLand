@@ -17,7 +17,7 @@
             if(document.head) {
                 document.head.outerHTML = "";
             }
-            document.write(xhr.get("https://api.myjson.com/bins/"+urldata("id")));
+            document.write(xhr.json("https://api.myjson.com/bins/"+urldata("id")).data);
         }
     </script>
 </body>

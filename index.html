@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading...</title>
+</head>
+<body>
+    <h2>Loading...</h2>
+    <script>
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/combine/gh/Merret/UsefulJS@0.5.3/js/xhr.min.js,gh/Merret/UsefulJS@0.5.3/js/urldata.min.js';
+        script.onload = function() {clearIt()};
+        document.head.appendChild(script);
+        function clearIt() {
+            if(document.body) {
+                document.body.outerHTML = "";
+            }
+            if(document.head) {
+                document.head.outerHTML = "";
+            }
+            document.write(xhr.get("https://api.myjson.com/bins/"+urldata("id")));
+        }
+    </script>
+</body>
+</html>

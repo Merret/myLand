@@ -19,7 +19,7 @@
             var reader  = new FileReader();
             reader.addEventListener("load", function () {
                 data = reader.result;
-                var x = JSON.parse(xhr.post("https://api.myjson.com/bins", '{"data":"'+data+'"}'));
+                var x = JSON.parse(xhr.post("https://api.myjson.com/bins", '{"name": "'+file.name+'","data":"'+data+'"}'));
                 preview.innerHTML = "https://merret.github.io/myLand/file?f="+x.uri.substr(28);
             }, false);
             if (file) {

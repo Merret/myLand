@@ -1,31 +1,31 @@
 <!DOCTYPE html>
- <html>
- <head>
-     <title>myLand File Saver</title>
-     <script src="https://cdn.jsdelivr.net/gh/Merret/UsefulJS@0.5.3/js/xhr.js"></script>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
- </head>
- <body>
-     <p>File size limit: 600 KB</p>
-     <input type="file" onchange="SaveF()"><br>
-     <textarea rows="1" cols="40"></textarea>
-     <script>
-         var data;
-         function SaveF() {
-             var preview = document.querySelector('textarea');
-             var file    = document.querySelector('input[type=file]').files[0];
-             preview.innerHTML = "Saving Your File ("+file.size+")...";
-             var reader  = new FileReader();
-             reader.addEventListener("load", function () {
-                 data = reader.result;
-                 var x = JSON.parse(xhr.post("https://api.myjson.com/bins", '{"data":"'+data+'"}'));
-                 preview.innerHTML = "https://merret.github.io/myLand/file?f="+x.uri.substr(28);
-             }, false);
-             if (file) {
-                 reader.readAsDataURL(file);
-             }
-         }
-     </script>
- </body>
- </html>
+<html>
+<head>
+    <title>myLand File Saver</title>
+    <script src="https://cdn.jsdelivr.net/gh/Merret/UsefulJS@0.5.3/js/xhr.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <p>File size limit: 600 KB</p>
+    <input type="file" onchange="SaveF()"><br>
+    <textarea rows="1" cols="40"></textarea>
+    <script>
+        var data;
+        function SaveF() {
+            var preview = document.querySelector('textarea');
+            var file    = document.querySelector('input[type=file]').files[0];
+            preview.innerHTML = "Saving Your File ("+Math.floor(file.size/100)/10+"KB)...";
+            var reader  = new FileReader();
+            reader.addEventListener("load", function () {
+                data = reader.result;
+                var x = JSON.parse(xhr.post("https://api.myjson.com/bins", '{"data":"'+data+'"}'));
+                preview.innerHTML = "https://merret.github.io/myLand/file?f="+x.uri.substr(28);
+            }, false);
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>

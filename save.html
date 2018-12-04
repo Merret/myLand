@@ -7,8 +7,35 @@
 <body>
     <input type="file" onchange="SaveF()"><br>
     <textarea rows="1" cols="40"></textarea>
+    <progress min="0" max="100" value="0" style="display: none"></progress>
     <script>
         var data;
+        var prg = document.querySelector('progress');
+        xhr.post = function (trg, data, ContentType = "application/json", sync = false, crsp = true) {
+        var anita;
+        var ann = new XMLHttpRequest();
+        ann.open('POST', trg, sync);
+        ann.setRequestHeader("Content-Type", ContentType);
+        ann.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                if(crsp == true) {
+                    console.log("xhr.POST responded: " + this.responseText);
+                }
+                anita = this.responseText;
+            } else {
+                console.log("xhr.POST Error. statue: " + this.status);
+                anita = "xhr.POST Error. statue: " + this.status;
+            }
+        };
+        ann.upload.onprogress = function(e) {
+            if (e.lengthComputable) {
+              progressBar.value = (e.loaded / e.total) * 100;
+              progressBar.textContent = progressBar.value;
+            }
+        };
+        ann.send(data);
+        return anita;
+        };
         function SaveF() {
             var preview = document.querySelector('textarea');
             preview.innerHTML = "Saving Your File...";

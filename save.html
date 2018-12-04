@@ -14,8 +14,8 @@
          var data;
          function SaveF() {
              var preview = document.querySelector('textarea');
-             preview.innerHTML = "Saving Your File...";
              var file    = document.querySelector('input[type=file]').files[0];
+             preview.innerHTML = "Saving Your File ("+file.size+")...";
              var reader  = new FileReader();
              reader.addEventListener("load", function () {
                  data = reader.result;

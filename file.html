@@ -8,7 +8,9 @@
 <body>
 <script>
 var d = urldata("f");
-location.href = JSON.parse(xhr.get("https://api.myjson.com/bins/"+d)).data;
+var f = JSON.parse(xhr.get("https://api.myjson.com/bins/"+d));
+document.title = f.name;
+location.href = f.data;
 </script>
 </body>
 </html>

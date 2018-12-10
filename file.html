@@ -10,7 +10,13 @@
 var d = urldata("f");
 var f = JSON.parse(xhr.get("https://api.myjson.com/bins/"+d));
 document.title = f.name;
-location.href = f.data;
+var element = document.createElement('a');
+element.setAttribute('href', f.data);
+element.setAttribute('download', f.name);
+element.style.display = 'none';
+document.body.appendChild(element);
+element.click();
+document.body.removeChild(element);
 </script>
 </body>
 </html>

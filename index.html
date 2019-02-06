@@ -11,6 +11,9 @@
         script.onload = function() {clearIt()};
         document.head.appendChild(script);
         function clearIt() {
+            if(urldata("id")==-1) {
+                location.href = "create";
+            }
             if(document.body) {
                 document.body.outerHTML = "";
             }
